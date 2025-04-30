@@ -26,11 +26,16 @@ async function ding(): Promise<void> {
 
 
 async function go() {
-
-
-
-
-
+    while(true) {
+        let input = await askQuestion("ST: ")
+        if(input == "done") break
+        const r = fetch("https://erau.teamdynamix.com/TDWebApi/api/29/assets/search", {headers: headers, method: "POST", body: JSON.stringify({
+            SerialLike: input
+        })})
+        const r2 = fetch(`https://erau.teamdynamix.com/TDWebApi/api/29/assets/${(await (await r).json())[0].ID}`, {headers: headers, method: "GET"})
+        let fullAsset = await (await r2).json()
+        console.log(fullAsset.ExpectedReplacementDate)
+    }
 }
 
 go().then(() => {

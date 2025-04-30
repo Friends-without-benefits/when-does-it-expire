@@ -7,5 +7,8 @@
   "scripts": {
     "build": "tsc",
     "start": "yarn build; node ./main.js"
+  },
+  "dependencies": {
+    "typescript": "^5.8.3"
   }
 }
